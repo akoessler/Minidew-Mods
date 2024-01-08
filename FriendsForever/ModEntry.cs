@@ -41,6 +41,10 @@ namespace FriendsForever
         /// <summary>Whether animals should be prevented from having friendship decay. Due to SMAPI limitations you have
         /// to sleep in the bed for this to work.</summary>
         public bool AffectAnimals = true;
+        /// <summary>
+        /// Enable debug mode that prints friendship levels every morning.
+        /// </summary>
+        public bool EnableDebug = false;
     }
 
     public class ModEntry : Mod {
@@ -52,13 +56,17 @@ namespace FriendsForever
         public override void Entry(IModHelper helper) {//is Menus.SaveGameMenu
             Config = helper.ReadConfig<Config>();
             helper.Events.GameLoop.DayEnding += EndDay;
-            //helper.Events.GameLoop.DayStarted += DebugDay;
+
+            if (Config.EnableDebug)
+            {
+                helper.Events.GameLoop.DayStarted += DebugDay;
+            }
 
             if (!(Config.AffectDates || Config.AffectDates || Config.AffectEveryoneElse || Config.AffectAnimals)) {
                 Monitor.Log("This mod can be removed, all features currently disabled.", LogLevel.Warn);
             }
         }
-        
+
         /// <summary>This function is generally used (uncomment code in Entry) to make sure the mod works.</summary>
         private void DebugDay(object sender, DayStartedEventArgs e) {
             var farmers = Game1.getAllFarmers();
@@ -85,7 +93,7 @@ namespace FriendsForever
                 }
             }
         }
-        
+
         /// <summary>Before the day is done, we need to set all the talked-to flags.</summary>
         private void EndDay(object sender, DayEndingEventArgs e) {
             //This is a host-only mod:
@@ -105,7 +113,7 @@ namespace FriendsForever
                         continue;
 
                     var friendship = farmer.friendshipData[character.Name];
-                    
+
                     if (farmer.spouse == character.Name && !Config.AffectSpouses) {
                         continue;
                     //If the they are 'dating' and we're not to affect dates, skip them. The exception to this is if
