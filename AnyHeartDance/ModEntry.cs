@@ -37,10 +37,10 @@ namespace AnyHeartDance {
 
     public class ModEntry : StardewModdingAPI.Mod {
         internal Config Config;
-    
+
         public override void Entry(IModHelper helper) {
             Config = helper.ReadConfig<Config>();
-            
+
             if (Config.HeartRequirement < 0) {
                 Config.HeartRequirement = 0;
                 Monitor.Log("Config heart requirement is less than 0? Defaulting to 0.", LogLevel.Warn);
@@ -48,12 +48,12 @@ namespace AnyHeartDance {
                 Config.HeartRequirement = 13;
                 Monitor.Log("Config heart requirement is greater than 13? Defaulting to 13.", LogLevel.Warn);
             }
-            
+
             helper.Events.Display.MenuChanged += OnUpdate;
         }
 
         private void OnUpdate(object sender, EventArgs args) {
-            if (Game1.currentLocation == null || Game1.currentLocation.name != "Temp" || Game1.currentLocation.currentEvent == null)
+            if (Game1.currentLocation == null || Game1.currentLocation.Name != "Temp" || Game1.currentLocation.currentEvent == null)
                 return;
             Event @event = Game1.currentLocation.currentEvent;
             //Dictionary<string, string> data = (Dictionary<string, string>)Util.GetInstanceField(typeof(Event), @event, "festivalData");
@@ -62,10 +62,10 @@ namespace AnyHeartDance {
                 return;
 
             foreach (NPC npc in @event.actors) {
-                if ( !npc.datable || npc.HasPartnerForDance) continue;
+                if ( !npc.datable.Value || npc.HasPartnerForDance) continue;
                 try {
                     if (npc.CurrentDialogue.Count() <= 0) continue;
-                    Dialogue reject = new Dialogue(Game1.content.Load<Dictionary<string, string>>("Characters\\Dialogue\\" + npc.name)["danceRejection"], npc);
+                    Dialogue reject = new Dialogue(Game1.content.Load<Dictionary<string, string>>("Characters\\Dialogue\\" + npc.Name)["danceRejection"], npc);
                     Dialogue curr = npc.CurrentDialogue.Peek();
                     if (reject == null || curr == null) continue;
 
@@ -73,9 +73,9 @@ namespace AnyHeartDance {
                     if (curr.getCurrentDialogue() == reject.getCurrentDialogue()) {
                         NPC who = npc;
                         // The original stuff, only the relationship point check is modified.
-                        if (!who.HasPartnerForDance && Game1.player.getFriendshipLevelForNPC(who.name) >= 250 * Config.HeartRequirement) {
+                        if (!who.HasPartnerForDance && Game1.player.getFriendshipLevelForNPC(who.Name) >= 250 * Config.HeartRequirement) {
                             string s = "";
-                            switch (who.gender) {
+                            switch (who.Gender) {
                             case 0:
                                 s = "You want to be my partner for the flower dance?#$b#Okay. I look forward to it.$h";
                                 break;
@@ -83,12 +83,12 @@ namespace AnyHeartDance {
                                 s = "You want to be my partner for the flower dance?#$b#Okay! I'd love to.$h";
                                 break;
                             }
-                            
-                            Game1.player.changeFriendship(250, Game1.getCharacterFromName(who.name));
-                            
+
+                            Game1.player.changeFriendship(250, Game1.getCharacterFromName(who.Name));
+
                             Game1.player.dancePartner.SetCharacter(who);
                             this.Monitor.Log(who.HasPartnerForDance.ToString());
-                            
+
                             who.setNewDialogue(s, false, false);
 
                             // Okay, looks like I need to fix the current dialog box

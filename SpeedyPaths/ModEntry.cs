@@ -227,7 +227,7 @@ namespace SpeedyPaths {
                     //Game1.player.buffs.Remove(currentBuff);
                     currentBuff = null;
                 }
-            
+
                 //If the general buff isn't active, then that means we need to add it:
                 if (!generalBuffActive && config.GeneralBoost != 0) {
                     generalBuff.addBuff();
@@ -254,7 +254,7 @@ namespace SpeedyPaths {
                         currentBuff.removeBuff();
                         //Game1.player.buffs.Remove(currentBuff);
                     }
-                    
+
                     //Game1.player.buffs.Add(newBoost);
                     newBoost.addBuff();
                     currentBuff = newBoost;
@@ -280,10 +280,10 @@ namespace SpeedyPaths {
             var flooring = tile as Flooring;
 
             //Just in case any future floor types are added:
-            if (flooring.whichFloor >= recognizedFloorTypes)
+            if (flooring.whichFloor.Value >= recognizedFloorTypes)
                 return unknownFlooringBuff;
 
-            return flooringToBuff[flooring.whichFloor];
+            return flooringToBuff[flooring.whichFloor.Value];
         }
 
         /// <summary>Attempts to get the boost from the map's tiles ("Back" layer).</summary>
@@ -291,7 +291,7 @@ namespace SpeedyPaths {
             var worldLocation = Game1.player.currentLocation;
 
             //The Bathhouse gets its own boost because of how SLOW you walk in it:
-            if (worldLocation.name.ToString().StartsWith("BathHouse", StringComparison.Ordinal)) //RECS0063
+            if (worldLocation.Name.ToString().StartsWith("BathHouse", StringComparison.Ordinal)) //RECS0063
                 return bathHouseBuff;
 
             //We don't make any indoor or farm map-paths fast:
@@ -302,7 +302,7 @@ namespace SpeedyPaths {
             var tile = worldLocation.getTileIndexAt(playerLocation, "Back");
 
             //Make sure that the current map is from one recognized maps.
-            if (townMapNames.Contains(worldLocation.name)) {
+            if (townMapNames.Contains(worldLocation.Name)) {
                 foreach (int stoneId in townSquareIds) {
                     if (tile == stoneId)
                         return townSquareBuff;
@@ -321,7 +321,7 @@ namespace SpeedyPaths {
                 //The bridge's tile id's exist in two big ranges, so they're looked for this way:
                 if ((1775 <= tile && tile <= 1791) || (1800 <= tile && tile <= 1816))
                     return woodBridgeBuff;
-            } else if (worldLocation.name == "Desert") {
+            } else if (worldLocation.Name == "Desert") {
                 foreach (int roadId in desertRoadIds) {
                     if (tile == roadId)
                         return desertRoadBuff;
@@ -331,7 +331,7 @@ namespace SpeedyPaths {
                     if (tile == pathId)
                         return dirtPathBuff;
                 }
-            } else if (worldLocation.name.ToString().StartsWith("Beach", StringComparison.Ordinal)) {
+            } else if (worldLocation.Name.StartsWith("Beach", StringComparison.Ordinal)) {
                 foreach (int dockId in dockIds) {
                     if (tile == dockId)
                         return dockBuff;
@@ -353,8 +353,8 @@ namespace SpeedyPaths {
 
             if (worldLocation == null)
                 return;
-            
-            this.Monitor.Log($"Location name: {worldLocation.name.Get()}");
+
+            this.Monitor.Log($"Location name: {worldLocation.Name}");
 
             if (Game1.player.currentLocation.terrainFeatures.ContainsKey(playerVec)) {
                 var tile = worldLocation.terrainFeatures[playerVec];
