@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net5</TargetFramework>
     <AssemblyTitle>AnyHeartDance</AssemblyTitle>
     <Copyright>Isaac S.</Copyright>
     <Deterministic>false</Deterministic>
