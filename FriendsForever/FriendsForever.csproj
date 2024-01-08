@@ -2,9 +2,10 @@
   <PropertyGroup>
     <TargetFramework>net5</TargetFramework>
     <AssemblyTitle>FriendsForever</AssemblyTitle>
+    <Copyright>Isaac S.</Copyright>
     <Deterministic>false</Deterministic>
-    <AssemblyVersion>1.0.*</AssemblyVersion>
-    <FileVersion>1.0.*</FileVersion>
+    <AssemblyVersion>1.2.3</AssemblyVersion>
+    <FileVersion>1.2.3</FileVersion>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
