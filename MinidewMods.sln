@@ -1,18 +1,20 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendsForever", "FriendsForever\FriendsForever.csproj", "{DD07E242-159E-458C-8F1B-D7A7467A7324}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendsForever", "FriendsForever\FriendsForever.csproj", "{DD07E242-159E-458C-8F1B-D7A7467A7324}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedyPaths", "SpeedyPaths\SpeedyPaths.csproj", "{68934383-7BCA-4CFE-8CC2-DE889C70CC4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedyPaths", "SpeedyPaths\SpeedyPaths.csproj", "{68934383-7BCA-4CFE-8CC2-DE889C70CC4D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E43E753C-EC24-4962-836C-CCE0A3229DAC}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		LICENSE = LICENSE
 		.gitignore = .gitignore
+		Directory.Packages.props = Directory.Packages.props
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyHeartDance", "AnyHeartDance\AnyHeartDance.csproj", "{C58035F2-E53D-4E88-82A7-3DD3F57FE354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnyHeartDance", "AnyHeartDance\AnyHeartDance.csproj", "{C58035F2-E53D-4E88-82A7-3DD3F57FE354}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,11 +35,14 @@ Global
 		{C58035F2-E53D-4E88-82A7-3DD3F57FE354}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58035F2-E53D-4E88-82A7-3DD3F57FE354}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
-		$0.TextStylePolicy = $2
+		$0.TextStylePolicy = $7
 		$2.TabsToSpaces = True
 		$2.NoTabsAfterNonTabs = True
 		$2.EolMarker = Unix
@@ -60,19 +65,16 @@ Global
 		$3.NewLineForMembersInAnonymousTypes = False
 		$3.NewLineForClausesInQuery = False
 		$3.scope = text/x-csharp
-		$0.TextStylePolicy = $4
 		$4.FileWidth = 80
 		$4.TabsToSpaces = True
 		$4.NoTabsAfterNonTabs = True
 		$4.EolMarker = Unix
 		$4.scope = text/plain
-		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
 		$5.scope = application/config+xml
 		$0.XmlFormattingPolicy = $6
 		$6.inheritsSet = null
 		$6.scope = application/config+xml
-		$0.TextStylePolicy = $7
 		$7.inheritsSet = null
 		$7.scope = application/json
 		$0.StandardHeader = $8
